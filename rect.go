@@ -10,15 +10,25 @@ import (
 type RectDrawer struct {
 	color     color.Color
 	rect      image.Rectangle
-	src       draw.Image
+	img       draw.Image
 	thickness int
 	isFilled  bool
 }
 
-// Draws rect in color onto src.  rect must be well-formed (see Rectangle.Canon()).
-func NewRectDrawer(src draw.Image, rect image.Rectangle, color color.Color) *RectDrawer {
+// Draws rect in color onto img.  rect must be well-formed (see Rectangle.Canon()).
+func NewRectDrawer(img draw.Image, rect image.Rectangle, color color.Color) *RectDrawer {
 	fmt.Println("Creating new RectDrawer")
-	return &RectDrawer{color: color, rect: rect, src: src, thickness: 1, isFilled: false}
+	return &RectDrawer{color: color, rect: rect, img: img, thickness: 1, isFilled: false}
+}
+
+func (this *RectDrawer) SetImage(img draw.Image) *RectDrawer {
+	this.img = img
+	return this
+}
+
+func (this *RectDrawer) SetRect(rect image.Rectangle) *RectDrawer {
+	this.rect = rect
+	return this
 }
 
 func (this *RectDrawer) SetThickness(thickness int) *RectDrawer {
@@ -43,8 +53,8 @@ func (this *RectDrawer) Draw() *RectDrawer {
 
 	for y := this.rect.Min.Y; y < this.rect.Max.Y; y++ {
 		for t := 0; t < thickX; t++ {
-			this.src.Set(this.rect.Min.X+t, y, this.color)
-			this.src.Set(this.rect.Max.X-1-t, y, this.color)
+			this.img.Set(this.rect.Min.X+t, y, this.color)
+			this.img.Set(this.rect.Max.X-1-t, y, this.color)
 		}
 	}
 
@@ -59,8 +69,8 @@ func (this *RectDrawer) Draw() *RectDrawer {
 
 	for x := this.rect.Min.X + thickX; x < this.rect.Max.X-thickX; x++ {
 		for t := 0; t < thickY; t++ {
-			this.src.Set(x, this.rect.Min.Y+t, this.color)
-			this.src.Set(x, this.rect.Max.Y-1-t, this.color)
+			this.img.Set(x, this.rect.Min.Y+t, this.color)
+			this.img.Set(x, this.rect.Max.Y-1-t, this.color)
 		}
 	}
 	return this
