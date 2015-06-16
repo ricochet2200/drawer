@@ -41,6 +41,11 @@ func (this *RectDrawer) SetFilled(isFilled bool) *RectDrawer {
 	return this
 }
 
+func (this *RectDrawer) SetColor(color color.Color) *RectDrawer {
+	this.color = color
+	return this
+}
+
 func (this *RectDrawer) Draw() *RectDrawer {
 
 	thickX := this.thickness
