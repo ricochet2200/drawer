@@ -1,5 +1,3 @@
-package drawer
-
 /*
 This package contains several structs for drawing, all following a similar convention:
 
@@ -16,4 +14,6 @@ This also allows you to reuse an instance:
 lineDrawer := NewLineDrawer(draw.Image, image.Point, image.Point, color.Color).Draw()
 lineDrawer = lineDrawer.SetStart(image.Pt(0, 50)).Draw()
 
+This construct allows easy addition of new features without compromising reverse compatibilty.
 */
+package drawer
