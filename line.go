@@ -29,6 +29,21 @@ func (this *LineDrawer) SetEnd(end image.Point) *LineDrawer {
 	return this
 }
 
+func (this *LineDrawer) SetColor(c color.Color) *LineDrawer {
+	this.color = c
+	return this
+}
+
+func (this *LineDrawer) SetImage(img draw.Image) *LineDrawer {
+	this.img = img
+	return this
+}
+
+func (this *LineDrawer) SetThickness(thick float64) *LineDrawer {
+	this.thickness = thick
+	return this
+}
+
 func (this *LineDrawer) Draw() *LineDrawer {
 
 	x0 := this.start.X
