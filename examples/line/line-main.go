@@ -16,10 +16,12 @@ func main() {
 	start := image.Pt(100, 100)
 	end := image.Pt(0, 0)
 	ld := drawer.NewLineDrawer(src, start, end, color.RGBA{255, 0, 0, 255}).Draw()
-	draw(ld, src, "positive.png")
-
-	ld.SetStart(end).SetEnd(start).Draw()
 	draw(ld, src, "negative.png")
+
+	start = image.Pt(0, 100)
+	end = image.Pt(100, 0)
+	ld.SetStart(end).SetEnd(start).Draw()
+	draw(ld, src, "positive.png")
 }
 
 func draw(drawer *drawer.LineDrawer, src image.Image, filename string) {
